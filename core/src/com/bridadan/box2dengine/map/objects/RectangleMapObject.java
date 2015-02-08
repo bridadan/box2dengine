@@ -4,23 +4,25 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.bridadan.box2dengine.Box2dEngine;
 
-public class CircleMapObject extends PhysicsMapObject {
+public class RectangleMapObject extends PhysicsMapObject {
 	
-	public CircleMapObject(World world, BodyType bodyType, float x, float y, float radius) {
+	public RectangleMapObject(World world, BodyType bodyType, float x, float y, float width, float height) {
 		super();
 		
-		setTextureRegion(new TextureRegion(Box2dEngine.assets.get("data/textures/ball.png", Texture.class)));
+		setDrawable(false);
+		//setTextureRegion(new TextureRegion(Box2dEngine.assets.get("data/textures/ball.png", Texture.class)));
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = bodyType;  
         bodyDef.position.set(x, y);
         
-        CircleShape shape = new CircleShape();
-        shape.setRadius(radius);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width, height);
         
         createPhysics(world, bodyDef, shape);
 	}

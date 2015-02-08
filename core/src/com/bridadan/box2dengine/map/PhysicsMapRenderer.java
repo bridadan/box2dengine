@@ -48,7 +48,7 @@ public class PhysicsMapRenderer implements MapRenderer {
 		// TODO Auto-generated method stub
 		for (MapLayer layer : map.getLayers()) {
 			for (MapObject object : layer.getObjects()) {
-				object.
+				//object.
 			}
 		}
 	}

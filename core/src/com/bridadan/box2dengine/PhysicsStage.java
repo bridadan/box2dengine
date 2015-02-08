@@ -7,8 +7,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.bridadan.box2dengine.actors.Circle;
-import com.bridadan.box2dengine.actors.PhysicsActor;
 import com.bridadan.box2dengine.map.PhysicsMap;
 import com.bridadan.box2dengine.map.PhysicsMapRenderer;
 import com.bridadan.box2dengine.utils.Utils;
@@ -34,6 +32,8 @@ public class PhysicsStage extends Stage {
     public PhysicsStage() {
     	map = new PhysicsMap();
     	world = map.getWorld();
+    	
+    	map.addActors(this);
         
     	camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0f);
@@ -62,7 +62,7 @@ public class PhysicsStage extends Stage {
     @Override
     public void draw() {
         super.draw();
-        mapRenderer.render()
+        mapRenderer.render();
         mapRenderer.renderDebug();
     }
     
@@ -70,9 +70,9 @@ public class PhysicsStage extends Stage {
     public void addActor(Actor actor) {
     	super.addActor(actor);
     	
-    	if (Utils.hasSuperclass(actor.getClass(), PhysicsActor.class)) {
+    	/*if (Utils.hasSuperclass(actor.getClass(), PhysicsActor.class)) {
     		((PhysicsActor) actor).addToWorld(world);
-    	}
+    	}*/
     }
     
     public static float toScreenSize(float n) {
